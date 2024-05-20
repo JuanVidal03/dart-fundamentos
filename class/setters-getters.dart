@@ -3,8 +3,8 @@
 void main(){
 
   // instancia de la clase
-  final Square mySquare = Square(side: -3);
-  print(mySquare);
+  final Square mySquare = Square(side: 3);
+  print(mySquare.calcularArea());
 
 }
 
@@ -15,7 +15,9 @@ class Square{
 
   // constructor
   Square({ required double side })
-    : _side = side;
+  // se maneja errores con aserts, primer param es la condicion y el segundo es el mensaje a retornar
+    : assert(side >= 0, "Lado debe ser mayor a 0"),
+      _side = side;
 
   double get area{
     return _side * _side;
@@ -23,9 +25,7 @@ class Square{
 
   set side(double value) {
     print('Nuevo valor ${value}');
-
     if (value < 0 ) throw "EL valor debe ser mayor a 0";
-
     _side = value;
   }
 
